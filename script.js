@@ -2,13 +2,13 @@
 let startScreen, startBtn, gameContainer, scenarioIntro, introTitle, introDescription;
 let continueBtn, video, questionContainer, questionText, optionYes, optionNo;
 let progressFill, progressText, homeBtn, nextBtn, prevBtn, feedbackOverlay;
-let feedbackText, endScreen, restartBtn;
+let feedbackText, endScreen, restartBtn, scenarioSelect;
 let playPauseBtn, stopBtn, volumeBtn, volumeSlider;
 
 // Audio Elements
 let startSound, rightSound, wrongSound, endingSound, questionSound, clickSound, messageSound;
 
-// Game Data - Added Digital Arrest at position 2
+// Game Data - Added Deepfake and Romance/Relationship scams
 const scenarios = [
   { 
     title: "ओटीपी कॉल", 
@@ -59,6 +59,20 @@ const scenarios = [
     correctAnswer: "no",
     description: "इस परिदृश्य में, आपको एक लॉटरी जीतने का ऑफर दिखाया जाएगा। आपका काम है सही निर्णय लेना और धोखाधड़ी से बचना।"
   },
+  { 
+    title: "डीपफेक धोखाधड़ी", 
+    video: "assets/videos/deepfake.mp4", 
+    questionTime: 13.5, 
+    correctAnswer: "no",
+    description: "इस परिदृश्य में आपको दिखाया जाएगा कि डीपफेक से कैसे निपटा जाए।"
+  },
+  { 
+    title: "रोमांस / रिश्ता घोटाला", 
+    video: "assets/videos/rel.mp4", 
+    questionTime: 17.5, 
+    correctAnswer: "no",
+    description: "इस परिदृश्य में, कोई व्यक्ति आपसे ऑनलाइन रिश्ता बनाकर आपकी भावनाओं का फायदा उठाने की कोशिश कर रहा है। आपको सही निर्णय लेना है।"
+  },
 ];
 
 // Game State
@@ -102,6 +116,7 @@ function initializeDOMElements() {
   feedbackText = document.getElementById("feedback-text");
   endScreen = document.getElementById("end-screen");
   restartBtn = document.getElementById("restart-btn");
+  scenarioSelect = document.getElementById("scenario-select");
 
   // Audio elements
   startSound = document.getElementById("start-sound");
@@ -182,6 +197,16 @@ function init() {
     restartGame();
   });
   
+  // Scenario dropdown listener
+  scenarioSelect.addEventListener("change", () => {
+    playSound(clickSound);
+    const newScenario = parseInt(scenarioSelect.value);
+    if (newScenario !== currentScenario) {
+      currentScenario = newScenario;
+      showScenarioIntro();
+    }
+  });
+  
   // Video event listeners
   video.addEventListener("ended", handleVideoEnd);
   video.addEventListener("play", updatePlayPauseButton);
@@ -241,6 +266,9 @@ function showScenarioIntro() {
   const scene = scenarios[currentScenario];
   introTitle.textContent = scene.title;
   introDescription.textContent = scene.description;
+  
+  // Update scenario dropdown
+  scenarioSelect.value = currentScenario;
   
   // Play message sound for all scenario intros except the first one
   if (currentScenario > 0) {
