@@ -19,6 +19,23 @@
         डिजिटल दुनिया में सुरक्षित रहा जा सकता है। प्रत्येक परिदृश्य में, आपको एक वीडियो दिखाई जाएगी 
         और फिर आपको सही निर्णय लेना होगा।
       </p>
+      
+      <!-- Scenarios List -->
+      <div class="scenarios-list">
+        <h3>इस गेम में शामिल परिदृश्य:</h3>
+        <ul>
+          <li>ओटीपी कॉल</li>
+          <li>डिजिटल गिरफ्तारी</li>
+          <li>आधार लिंक कॉल</li>
+          <li>रिश्तेदार बनकर कॉल</li>
+          <li>ऐप डाउनलोड घोटाला</li>
+          <li>सरकारी योजना कॉल</li>
+          <li>लॉटरी घोटाला</li>
+          <li>डीपफेक धोखाधड़ी</li>
+          <li>रोमांस / रिश्ता घोटाला</li>
+        </ul>
+      </div>
+      
       <button id="start-btn" class="btn-primary">
         <i class="fas fa-play"></i> खेल शुरू करें
       </button>
@@ -33,7 +50,7 @@
         <div class="progress-bar">
           <div id="progress-fill" class="progress-fill"></div>
         </div>
-        <div id="progress-text" class="progress-text">1/7</div>
+        <div id="progress-text" class="progress-text">1/9</div>
       </div>
       <div class="header-buttons">
         <button id="prev-btn" class="header-btn" disabled>
@@ -42,6 +59,19 @@
         <button id="home-btn" class="header-btn">
           <i class="fas fa-home"></i> होम
         </button>
+        <div class="scenario-dropdown">
+          <select id="scenario-select" class="scenario-select">
+            <option value="0">ओटीपी कॉल</option>
+            <option value="1">डिजिटल गिरफ्तारी</option>
+            <option value="2">आधार लिंक कॉल</option>
+            <option value="3">रिश्तेदार बनकर कॉल</option>
+            <option value="4">ऐप डाउनलोड घोटाला</option>
+            <option value="5">सरकारी योजना कॉल</option>
+            <option value="6">लॉटरी घोटाला</option>
+            <option value="7">डीपफेक धोखाधड़ी</option>
+            <option value="8">रोमांस / रिश्ता घोटाला</option>
+          </select>
+        </div>
         <button id="next-btn" class="header-btn" disabled>
           <i class="fas fa-forward"></i> अगला
         </button>
